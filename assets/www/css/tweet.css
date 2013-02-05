@@ -1,0 +1,18 @@
+.celeb-pic {
+	margin: 15px;
+}
+
+.celeb-photo{
+	margin: 5px;
+}
+.tweet-active {
+	background: green !important;
+}
+
+.time{
+	float: right;
+}
+
+.trendsContent{
+	margin: 10px;
+}
