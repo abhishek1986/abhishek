@@ -1,7 +1,8 @@
+config.js
+
 #################
 ## Eclipse
 #################
-
 *.pydevproject
 .project
 .metadata
