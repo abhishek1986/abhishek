@@ -1,146 +1,177 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="format-detection" content="telephone=no" />
-		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.2.0.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/tweet.css" />
-		<title>Tweetwood</title>
-		<script type="text/javascript" src="cordova-2.2.0.js"></script>
-		<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
-		<script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
-        
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.2.0.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/tweet.css" />
+        <title>Tweetwood</title>
+        <script type="text/javascript" src="cordova-2.2.0.js"></script>
+        <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
         <script type="text/javascript" src="js/config.js"></script>
-		<script type="text/javascript" src="feed.js"></script>
-	</head>
-	<body>
-	
-		 <!-- This page is for the first tab i.e. Tweets. -->
-		<div data-role="page" id="pagetweets" data-title="Tweets" data-rss="http://localhost:8000/webservice/getFeedDataNew?country=IN&category=sports&page=2">
+        <script type="text/javascript" src="feed.js"></script>
+    </head>
+    <body>
 
-		<div data-role="header" class="ui-bar">
-			<a href="select.html" data-role="button" data-icon="arrow-l"><img src="img/tweetwppd.png" /></a>
-			<h1></h1>
-			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-				<a href="#" class = "refresh" data-role="button"><img src="img/refresh1.png"/></a>
-				<a href="setting.html" data-role="button"><img src="img/titlebar-settings.png" /></a>
-			</div>
-		</div>
+        <!-- This page is for the first tab i.e. Tweets. -->
+        <div data-role="page" id="pagetweets" data-title="Tweets" data-rss="getFeedNew?country=IN&category=sports&page=2">
 
-		<div data-role="content">
-			<div class="content-primary">
-				<ul data-role="listview" class="tweets" data-inset="true">
+            <div data-role="header" class="ui-bar">
+                <a href="select.html" data-role="button" data-icon="arrow-l"><img src="img/tweetwppd.png" /></a>
+                <h1></h1>
+                <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+                    <a href="#" class = "refresh" data-role="button"><img src="img/refresh1.png"/></a>
+                    <a href="setting.html" data-role="button"><img src="img/titlebar-settings.png" /></a>
+                </div>
+            </div>
 
-				</ul>
-			</div>
-		</div>
+            <div data-role="content">
+                <div class="content-primary">
+                    <ul data-role="listview" class="tweets" data-inset="true">
 
-		<div data-role="footer" class="ui-bar tab">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#pagetweets" data-role="button" class="tweet-active"><img src="img/buttonbar-tweets.png" /></a></li>
-					<li><a href="#pagepics" data-role="button"><img src="img/buttonbar-photos.png" /></a></li>
-					<li><a href="#pagetrends" data-role="button"><img src="img/buttonbar-trends.png" /></a></li>
-					<li><a href="#pagecelebs" data-role="button"><img src="img/buttonbar-celebrities.png" /></a></li>
-				</ul>
-			</div>
-		</div>
-		</div>
-		<!-- This page is for the second tab pictures. -->
-		<div data-role="page" id="pagepics" data-title="Pictures" data-prefetch data-rss="http://localhost:8000/webservice/getFeedDataNew?country=IN&category=sports&image=1&page=2">
+                    </ul>
+                </div>
+            </div>
 
-		<div data-role="header" class="ui-bar">
-			<a href="select.html" data-role="button" data-icon="arrow-l"><img src="img/tweetwppd.png" /></a>
-			<h1></h1>
-			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-				<a href="#" class = "refresh" data-role="button"><img src="img/refresh1.png"/></a>
-				<a href="setting.html" data-role="button"><img src="img/titlebar-settings.png" /></a>
-			</div>
-		</div>
+            <div data-role="footer" class="ui-bar tab">
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#pagetweets" data-role="button" class="tweet-active"><img src="img/buttonbar-tweets.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagepics" data-role="button"><img src="img/buttonbar-photos.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagetrends" data-role="button"><img src="img/buttonbar-trends.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagecelebs" data-role="button"><img src="img/buttonbar-celebrities.png" /></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- This page is for the second tab pictures. -->
+        <div data-role="page" id="pagepics" data-title="Pictures" data-prefetch data-rss="getFeedNew?country=IN&category=sports&image=1&page=2">
 
-		<div data-role="content">
-			<div class="content-primary">
-				<ul data-role="listview" class="tweets" data-inset="true">
+            <div data-role="header" class="ui-bar">
+                <a href="select.html" data-role="button" data-icon="arrow-l"><img src="img/tweetwppd.png" /></a>
+                <h1></h1>
+                <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+                    <a href="#" class = "refresh" data-role="button"><img src="img/refresh1.png"/></a>
+                    <a href="setting.html" data-role="button"><img src="img/titlebar-settings.png" /></a>
+                </div>
+            </div>
 
-				</ul>
-			</div>
-		</div>
+            <div data-role="content">
+                <div class="content-primary">
+                    <ul data-role="listview" class="tweets" data-inset="true">
 
-		<div data-role="footer" class="ui-bar tab">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#pagetweets" data-role="button"><img src="img/buttonbar-tweets.png" /></a></li>
-					<li><a href="#pagepics" data-role="button" data-theme="b" class="tweet-active"><img src="img/buttonbar-photos.png" /></a></li>
-					<li><a href="#pagetrends" data-role="button"><img src="img/buttonbar-trends.png" /></a></li>
-					<li><a href="#pagecelebs" data-role="button"><img src="img/buttonbar-celebrities.png" /></a></li>
-				</ul>
-			</div>
-		</div>
-		</div>
-		<!-- This page is for the third tab trends. -->
-		<div data-role="page" id="pagetrends" data-title="Trends" data-rss="http://localhost:8000/webservice/searchNew?q=&resultType=trend&country=IN">
+                    </ul>
+                </div>
+            </div>
 
-		<div data-role="header" class="ui-bar">
-			<a href="select.html" data-role="button" data-icon="arrow-l"><img src="img/tweetwppd.png" /></a>
-			<h1></h1>
-			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-				<a href="#" class = "refresh" data-role="button"><img src="img/refresh1.png"/></a>
-				<a href="setting.html" data-role="button"><img src="img/titlebar-settings.png" /></a>
-			</div>
-		</div>
+            <div data-role="footer" class="ui-bar tab">
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#pagetweets" data-role="button"><img src="img/buttonbar-tweets.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagepics" data-role="button" data-theme="b" class="tweet-active"><img src="img/buttonbar-photos.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagetrends" data-role="button"><img src="img/buttonbar-trends.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagecelebs" data-role="button"><img src="img/buttonbar-celebrities.png" /></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- This page is for the third tab trends. -->
+        <div data-role="page" id="pagetrends" data-title="Trends" data-rss="doSearchAppNew?q=&resultType=trend&country=IN">
 
-		<div data-role="content">
-			<div class="content-primary">
-				<ul data-role="listview" class="tweets" data-inset="true">
+            <div data-role="header" class="ui-bar">
+                <a href="select.html" data-role="button" data-icon="arrow-l"><img src="img/tweetwppd.png" /></a>
+                <h1></h1>
+                <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+                    <a href="#" class = "refresh" data-role="button"><img src="img/refresh1.png"/></a>
+                    <a href="setting.html" data-role="button"><img src="img/titlebar-settings.png" /></a>
+                </div>
+            </div>
 
-				</ul>
-			</div>
-		</div>
+            <div data-role="content">
+                <div class="content-primary">
+                    <ul data-role="listview" class="tweets" data-inset="true">
 
-		<div data-role="footer" class="ui-bar tab">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#pagetweets" data-role="button"><img src="img/buttonbar-tweets.png" /></a></li>
-					<li><a href="#pagepics" data-role="button"><img src="img/buttonbar-photos.png" /></a></li>
-					<li><a href="#pagetrends" data-role="button" class="tweet-active"><img src="img/buttonbar-trends.png" /></a></li>
-					<li><a href="#pagecelebs" data-role="button"><img src="img/buttonbar-celebrities.png" /></a></li>
-				</ul>
-			</div>
-		</div>
-</div>
+                    </ul>
+                </div>
+            </div>
 
-<!-- This page is for the fourth tab celebrities. -->
-		<div data-role="page" id="pagecelebs" data-title="Celebrities" data-rss="http://localhost:8000/webservice/searchNew?q=&resultType=celebrity&country=IN">
+            <div data-role="footer" class="ui-bar tab">
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#pagetweets" data-role="button"><img src="img/buttonbar-tweets.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagepics" data-role="button"><img src="img/buttonbar-photos.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagetrends" data-role="button" class="tweet-active"><img src="img/buttonbar-trends.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagecelebs" data-role="button"><img src="img/buttonbar-celebrities.png" /></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-		<div data-role="header" class="ui-bar">
-			<a href="select.html" data-role="button" data-icon="arrow-l"><img src="img/tweetwppd.png" /></a>
-			<h1></h1>
-			<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-				<a href="#" class = "refresh" data-role="button"><img src="img/refresh1.png"/></a>
-				<a href="setting.html" data-role="button"><img src="img/titlebar-settings.png" /></a>
-			</div>
-		</div>
+        <!-- This page is for the fourth tab celebrities. -->
+        <div data-role="page" id="pagecelebs" data-title="Celebrities" data-rss="doSearchAppNew?q=&resultType=celebrity&country=IN">
 
-		<div data-role="content">
-			<div class="content-primary">
-				<input type="text" placeholder="Type Celebrity Name" />
-				<ul data-role="listview" class="tweets" data-inset="true">
-				
-				</ul>
-			</div>
-		</div>
+            <div data-role="header" class="ui-bar">
+                <a href="select.html" data-role="button" data-icon="arrow-l"><img src="img/tweetwppd.png" /></a>
+                <h1></h1>
+                <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+                    <a href="#" class = "refresh" data-role="button"><img src="img/refresh1.png"/></a>
+                    <a href="setting.html" data-role="button"><img src="img/titlebar-settings.png" /></a>
+                </div>
+            </div>
 
-		<div data-role="footer" class="ui-bar tab">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#pagetweets" data-role="button"><img src="img/buttonbar-tweets.png" /></a></li>
-					<li><a href="#pagepics" data-role="button"><img src="img/buttonbar-photos.png" /></a></li>
-					<li><a href="#pagetrends" data-role="button"><img src="img/buttonbar-trends.png" /></a></li>
-					<li><a href="#pagecelebs" data-role="button" class="tweet-active"><img src="img/buttonbar-celebrities.png" /></a></li>
-				</ul>
-			</div>
-		</div>
-</div>
-	</body>
+            <div data-role="content">
+                <div class="content-primary">
+                    <input type="text" placeholder="Type Celebrity Name" />
+                    <ul data-role="listview" class="tweets" data-inset="true">
+
+                    </ul>
+                </div>
+            </div>
+
+            <div data-role="footer" class="ui-bar tab">
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#pagetweets" data-role="button"><img src="img/buttonbar-tweets.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagepics" data-role="button"><img src="img/buttonbar-photos.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagetrends" data-role="button"><img src="img/buttonbar-trends.png" /></a>
+                        </li>
+                        <li>
+                            <a href="#pagecelebs" data-role="button" class="tweet-active"><img src="img/buttonbar-celebrities.png" /></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
