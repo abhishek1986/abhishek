@@ -16,3 +16,9 @@
 .trendsContent{
 	margin: 10px;
 }
+
+span.text{
+	overflow : hidden;
+	width: 100%;
+	word-wrap: break-word;
+}
