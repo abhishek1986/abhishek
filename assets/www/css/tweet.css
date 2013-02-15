@@ -1,10 +1,10 @@
-.celeb-pic {
+/*.celeb-pic {
 	margin: 15px;
 }
 
 .celeb-photo{
 	margin: 5px;
-}
+}*/
 .tweet-active {
 	background: green !important;
 }
@@ -13,7 +13,7 @@
 	float: right;
 }
 
-.trendsContent{
+/*.trendsContent{
 	margin: 10px;
 }
 
@@ -21,4 +21,10 @@ span.text{
 	overflow : hidden;
 	width: 100%;
 	word-wrap: break-word;
+}*/
+.hidden{
+	display : none;
+}
+.loader{
+	text-align : center;
 }

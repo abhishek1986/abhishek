@@ -16,23 +16,28 @@
 	<body>
 
 		<!-- This page is for the first tab i.e. Tweets. -->
-		<div data-role="page" id="pagetweets" data-title="Tweets" data-rss="getFeedNew?country=IN&category=&page=" data-page_num="1">
+		<div data-role="page" id="pagetweets" class="mainTweet" data-title="Tweets" data-rss="getFeedNew?country=IN&category=&page=" data-page_num="1">
 
-			<div data-role="header" class="ui-bar" data-position="fixed">
-				<a href="select.html" data-role="button" data-icon="arrow-l" data-mini="true"><img src="img/tweetwppd.png" /></a>
+			<div data-role="header" class="ui-bar" data-position="fixed" >
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+					<a data-role="button" data-icon="arrow-l" iconpos="left" data-rel="back"  data-inline="true"></a>
+					<a href="#pagehome" data-role="button" data-mini="true" data-inline="true"><img src="img/tweetwppd.png" /></a>
+				</div>
 				<h1></h1>
 				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a href="#" class = "refresh" data-role="button" data-mini="true"><img src="img/refresh1.png"/></a>
-					<a href="setting.html" data-role="button" data-mini="true"><img src="img/titlebar-settings.png" /></a>
+					<a class = "refresh" data-role="button" data-mini="true" data-icon="refresh"></a>
+					<a href="setting.html" data-role="button" data-mini="true" data-icon="gear"></a>
 				</div>
 			</div>
 
 			<div data-role="content">
 				<div class="content-primary">
+					<div class="loader hidden"><img src='css/images/ajax-loader.gif'>
+					</div>
 					<ul data-role="listview" class="tweets" data-inset="true">
 
 					</ul>
-					<input type="button" value="Load More" class="ui-btn-hidden" data-mini="true" onclick="app.renderLoadMore()" />
+					<input type="button" value="Load More" class="loadMore" data-mini="true" onclick="app.renderLoadMore()" />
 				</div>
 			</div>
 
@@ -55,24 +60,47 @@
 				</div>
 			</div>
 		</div>
+
+		<div data-role="page" id="pagehome" data-title="Home Page">
+			<div data-role="header" class="ui-bar">
+				<img src="img/home-tweetwood.png" />
+			</div>
+			<div data-role="content">
+				<a href="#pagetweets"><img src="img/home-tweets.png" />Tweets </a>
+				<br />
+				<a href="#pagetrends"><img src="img/home-trend.png" />Trends</a>
+				<br />
+				<a href="#pagepics"><img src="img/home-images.png" />Pics </a>
+				<br />
+				<a href="#pagecelebs"><img src="img/home-celebrities.png" />Celebrities</a>
+				<br />
+			</div>
+		</div>
+
 		<!-- This page is for the second tab pictures. -->
-		<div data-role="page" id="pagepics" data-title="Pictures" data-prefetch data-rss="getFeedNew?country=IN&category=&image=1&page=" data-page_num="1">
+		<div data-role="page" id="pagepics" class="mainTweet" data-title="Pictures" data-prefetch data-rss="getFeedNew?country=IN&category=&image=1&page=" data-page_num="1">
 
 			<div data-role="header" class="ui-bar" data-position="fixed">
-				<a href="select.html" data-role="button" data-icon="arrow-l" data-mini="true"><img src="img/tweetwppd.png" /></a>
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+					<a data-role="button" data-icon="arrow-l" iconpos="left" data-rel="back"  data-inline="true"></a>
+					<a href="select.html" data-role="button" data-mini="true" data-inline="true"><img src="img/tweetwppd.png" /></a>
+				</div>
 				<h1></h1>
 				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a href="#" class = "refresh" data-role="button" data-mini="true"><img src="img/refresh1.png"/></a>
-					<a href="setting.html" data-role="button" data-mini="true"><img src="img/titlebar-settings.png" /></a>
+					<a class = "refresh" data-role="button" data-mini="true" data-icon="refresh"></a>
+					<a href="#pagehome" data-role="button" data-mini="true" data-icon="gear"></a>
 				</div>
 			</div>
 
 			<div data-role="content">
 				<div class="content-primary">
+					<div class="loader hidden"><img src='css/images/ajax-loader.gif'>
+					</div>
+
 					<ul data-role="listview" class="tweets" data-inset="true">
 
 					</ul>
-					<input type="button" value="Load More" class="ui-btn-hidden" data-mini="true" onclick="app.renderLoadMore()" />
+					<input type="button" value="Load More" class="loadMore" data-mini="true" onclick="app.renderLoadMore()" />
 				</div>
 			</div>
 
@@ -96,23 +124,29 @@
 			</div>
 		</div>
 		<!-- This page is for the third tab trends. -->
-		<div data-role="page" id="pagetrends" data-title="Trends" data-rss="doSearchAppNew?q=&resultType=trend&country=IN&page=" data-page_num="1">
+		<div data-role="page" id="pagetrends" class="mainTweet" data-title="Trends" data-rss="doSearchAppNew?q=&resultType=trend&country=IN&page=" data-page_num="1">
 
 			<div data-role="header" class="ui-bar" data-position="fixed">
-				<a href="select.html" data-role="button" data-icon="arrow-l" data-mini="true"><img src="img/tweetwppd.png" /></a>
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+					<a data-role="button" data-icon="arrow-l" iconpos="left" data-rel="back"  data-inline="true"></a>
+					<a href="#pagehome" data-role="button" data-mini="true" data-inline="true"><img src="img/tweetwppd.png" /></a>
+				</div>
 				<h1></h1>
 				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a href="#" class = "refresh" data-role="button" data-mini="true"><img src="img/refresh1.png"/></a>
-					<a href="setting.html" data-role="button" data-mini="true"><img src="img/titlebar-settings.png" /></a>
+					<a class = "refresh" data-role="button" data-mini="true" data-icon="refresh"></a>
+					<a href="setting.html" data-role="button" data-mini="true" data-icon="gear"></a>
 				</div>
 			</div>
 
 			<div data-role="content">
 				<div class="content-primary">
+					<div class="loader hidden"><img src='css/images/ajax-loader.gif'>
+					</div>
+
 					<ul data-role="listview" class="tweets" data-inset="true">
 
 					</ul>
-					<input type="button" value="Load More" class="ui-btn-hidden" data-mini="true" onclick="app.renderLoadMore()" />
+					<input type="button" value="Load More" class="loadMore" data-mini="true" onclick="app.renderLoadMore()" />
 				</div>
 			</div>
 
@@ -137,24 +171,30 @@
 		</div>
 
 		<!-- This page is for the fourth tab celebrities. -->
-		<div data-role="page" id="pagecelebs" data-title="Celebrities" data-rss="doSearchAppNew?q=&resultType=celebrity&country=IN&page=" data-page_num="1">
+		<div data-role="page" id="pagecelebs" class="mainTweet" data-title="Celebrities" data-rss="doSearchAppNew?q=&resultType=celebrity&country=IN&page=" data-page_num="1">
 
 			<div data-role="header" class="ui-bar" data-position="fixed">
-				<a href="select.html" data-role="button" data-icon="arrow-l" data-mini="true"><img src="img/tweetwppd.png" /></a>
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+					<a data-role="button" data-icon="arrow-l" iconpos="left" data-rel="back"  data-inline="true"></a>
+					<a href="#pagehome" data-role="button" data-mini="true" data-inline="true"><img src="img/tweetwppd.png" /></a>
+				</div>
 				<h1></h1>
 				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a href="#" class = "refresh" data-role="button" data-mini="true"><img src="img/refresh1.png"/></a>
-					<a href="setting.html" data-role="button" data-mini="true"><img src="img/titlebar-settings.png" /></a>
+					<a class = "refresh" data-role="button" data-mini="true" data-icon="refresh"></a>
+					<a href="setting.html" data-role="button" data-mini="true" data-icon="gear"></a>
 				</div>
 			</div>
 
 			<div data-role="content">
 				<div class="content-primary">
+					<div class="loader hidden"><img src='css/images/ajax-loader.gif'>
+					</div>
+
 					<input type="text" placeholder="Type Celebrity Name" />
 					<ul data-role="listview" class="tweets" data-inset="true">
 
 					</ul>
-					<input type="button" value="Load More" class="ui-btn-hidden" data-mini="true" onclick="app.renderLoadMore()" />
+					<input type="button" value="Load More" class="loadMore" data-mini="true" onclick="app.renderLoadMore()" />
 				</div>
 			</div>
 
@@ -180,16 +220,21 @@
 
 		<div data-role="page" id="pageDetail" data-title="DetailTweet">
 
-			<div data-role="header" class="ui-bar" data-position="fixed">
-				<a href="select.html" data-role="button" data-icon="arrow-l" data-mini="true"><img src="img/tweetwppd.png" /></a>
+			<div data-role="header" class="ui-bar" data-position="fixed" class="ui-state-persist">
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+					<a data-role="button" data-icon="arrow-l" iconpos="left" data-rel="back"  data-inline="true"></a>
+					<a href="#pagehome" data-role="button" data-mini="true" data-inline="true"><img src="img/tweetwppd.png" /></a>
+				</div>
 				<h1></h1>
 				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a href="setting.html" data-role="button" data-mini="true"><img src="img/titlebar-settings.png" /></a>
+					<a href="setting.html" data-role="button" data-mini="true" data-icon="gear"></a>
 				</div>
 			</div>
 
 			<div data-role="content">
 				<div class="content-primary">
+					<div class="loader hidden"><img src='css/images/ajax-loader.gif'>
+					</div>
 					<ul data-role="listview" class="detail" data-inset="true">
 
 					</ul>
@@ -201,20 +246,44 @@
 		<div data-role="page" id="trendDetail" data-title="DetailTrend"  data-rss="doSearchAppNew?resultType=tweet&q=">
 
 			<div data-role="header" class="ui-bar" data-position="fixed">
-				<a href="select.html" data-role="button" data-icon="arrow-l" data-mini="true"><img src="img/tweetwppd.png" /></a>
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+					<a data-role="button" data-icon="arrow-l" iconpos="left" data-rel="back"  data-inline="true"></a>
+					<a href="#pagehome" data-role="button" data-mini="true" data-inline="true"><img src="img/tweetwppd.png" /></a>
+				</div>
 				<h1></h1>
 				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a href="setting.html" data-role="button" data-mini="true"><img src="img/titlebar-settings.png" /></a>
+					<a href="setting.html" data-role="button" data-mini="true" data-icon="gear"></a>
 				</div>
 			</div>
 
 			<div data-role="content">
-				<div class="content-primary">
-					<ul data-role="listview" class="trendsDetail" data-inset="true">
+				<ul data-role="listview" class="trendsDetail" data-inset="true">
 
-					</ul>
+				</ul>
+			</div>
+		</div>
+
+		<div data-role="page" id="celebDetail" data-title="CelebrityDetail" data-rss="getCelebTweetsNew?&image=1&page=" data-page_num="1">
+
+			<div data-role="header" class="ui-bar" data-position="fixed" class="ui-state-persist">
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+					<a data-role="button" data-icon="arrow-l" iconpos="left" data-rel="back"  data-inline="true"></a>
+					<a href="#pagehome" data-role="button" data-mini="true" data-inline="true"><img src="img/tweetwppd.png" /></a>
+				</div>
+				<h1></h1>
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+					<a href="setting.html" data-role="button" data-mini="true" data-icon="gear"></a>
 				</div>
 			</div>
+
+			<div data-role="content">
+				<ul data-role="listview" class="celeb-detail" data-inset="true">
+
+				</ul>
+				<input type="button" value="Load More" class="loadMore" data-mini="true" onclick="app.renderLoadMore()" />
+			</div>
+		</div>
+
 		</div>
 
 	</body>
