@@ -171,7 +171,7 @@
 		</div>
 
 		<!-- This page is for the fourth tab celebrities. -->
-		<div data-role="page" id="pagecelebs" class="mainTweet" data-title="Celebrities" data-rss="doSearchAppNew?q=&resultType=celebrity&country=IN&page=" data-page_num="1">
+		<div data-role="page" id="pagecelebs" class="mainTweet" data-title="Celebrities" data-rss="doSearchAppNew?resultType=celebrity&country=IN&page=" data-page_num="1">
 
 			<div data-role="header" class="ui-bar" data-position="fixed">
 				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
@@ -189,8 +189,8 @@
 				<div class="content-primary">
 					<div class="loader hidden"><img src='css/images/ajax-loader.gif'>
 					</div>
-
-					<input type="text" placeholder="Type Celebrity Name" />
+					<p>
+					<input type="text" id="celeb_name" name="celeb_name" class="ui-autocomplete-input" placeholder="Enter Celebrity Name..." /></p>
 					<ul data-role="listview" class="tweets" data-inset="true">
 
 					</ul>
@@ -263,7 +263,7 @@
 			</div>
 		</div>
 
-		<div data-role="page" id="celebDetail" data-title="CelebrityDetail" data-rss="getCelebTweetsNew?&image=1&page=" data-page_num="1">
+		<div data-role="page" id="celebDetail" data-title="CelebrityDetail" data-rss="getCelebTweetsNew?&page=" data-page_num="1">
 
 			<div data-role="header" class="ui-bar" data-position="fixed" class="ui-state-persist">
 				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
@@ -282,8 +282,96 @@
 				</ul>
 				<input type="button" value="Load More" class="loadMore" data-mini="true" onclick="app.renderLoadMore()" />
 			</div>
+
+			<div data-role="footer" class="ui-bar tab" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#celebDetailBio" data-role="button" data-mini="true"><img src="img/celeb-bio.png" /></a>
+						</li>
+						<li>
+							<a href="#celebDetail" data-role="button" class="tweet-active" data-mini="true"><img src="img/celeb-tweets.png" /></a>
+						</li>
+						<li>
+							<a href="#celebDetailPic" data-role="button" data-mini="true"><img src="img/celeb-pics.png" /></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
 		</div>
 
+		<div data-role="page" id="celebDetailPic" data-title="CelebrityDetailPic" data-rss="getCelebTweetsNew?&image=1&page=" data-page_num="1">
+
+			<div data-role="header" class="ui-bar" data-position="fixed" class="ui-state-persist">
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+					<a data-role="button" data-icon="arrow-l" iconpos="left" data-rel="back"  data-inline="true"></a>
+					<a href="#pagehome" data-role="button" data-mini="true" data-inline="true"><img src="img/tweetwppd.png" /></a>
+				</div>
+				<h1></h1>
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+					<a href="setting.html" data-role="button" data-mini="true" data-icon="gear"></a>
+				</div>
+			</div>
+
+			<div data-role="content">
+				<ul data-role="listview" class="celeb-detail-pics" data-inset="true">
+
+				</ul>
+				<input type="button" value="Load More" class="loadMore" data-mini="true" onclick="app.renderLoadMore()" />
+			</div>
+
+			<div data-role="footer" class="ui-bar tab" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#celebDetailBio" data-role="button" data-mini="true"><img src="img/celeb-bio.png" /></a>
+						</li>
+						<li>
+							<a href="#celebDetail" data-role="button" class="tweet-active" data-mini="true"><img src="img/celeb-tweets.png" /></a>
+						</li>
+						<li>
+							<a href="#celebDetailPic" data-role="button" data-mini="true"><img src="img/celeb-pics.png" /></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div data-role="page" id="celebDetailBio" data-title="CelebrityDetailBio" data-rss="getCelebBioNew?&celeb_id=">
+
+			<div data-role="header" class="ui-bar" data-position="fixed" class="ui-state-persist">
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+					<a data-role="button" data-icon="arrow-l" iconpos="left" data-rel="back"  data-inline="true"></a>
+					<a href="#pagehome" data-role="button" data-mini="true" data-inline="true"><img src="img/tweetwppd.png" /></a>
+				</div>
+				<h1></h1>
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
+					<a href="setting.html" data-role="button" data-mini="true" data-icon="gear"></a>
+				</div>
+			</div>
+
+			<div data-role="content">
+				<ul data-role="listview" class="celeb-detail-bio" data-inset="true">
+
+				</ul>
+			</div>
+
+			<div data-role="footer" class="ui-bar tab" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#celebDetailBio" data-role="button" class="tweet-active" data-mini="true"><img src="img/celeb-bio.png" /></a>
+						</li>
+						<li>
+							<a href="#celebDetail" data-role="button" data-mini="true"><img src="img/celeb-tweets.png" /></a>
+						</li>
+						<li>
+							<a href="#celebDetailPic" data-role="button" data-mini="true"><img src="img/celeb-pics.png" /></a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 
 	</body>

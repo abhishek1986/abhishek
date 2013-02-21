@@ -17,6 +17,17 @@ var app = {
 			app.callAjax(url, target, pagename, true);
 		});
 
+			$(document).on('keyup', '#celeb_name', function(e) {
+			console.log(e.target.value);
+			var page = $.mobile.activePage;
+			var pagename = $(page).data("title");
+			var pageNo = $(page).data("page_num");
+			feed_url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&q=" + e.target.value;
+			var url = encodeURI(feed_url);
+			var target = $(page).find(".tweets");
+			app.callAjax(url, target, pagename, false);
+		});
+
 		$(document).on('click', '.refresh', function(e, data) {
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
@@ -55,8 +66,29 @@ var app = {
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
 			var pageNo = $(page).data("page_num");
-			var target = $(page).find(".trendsDetail");
+			var target = $(page).find(".celeb-detail");
 			var url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&celeb_id=" + celebID;
+			url = encodeURI(url);
+			app.callAjax(url, target, pagename, true);
+		});
+
+		$(document).on('pageshow', '#celebDetailPic', function(event, ui) {
+			var celebID = sessionStorage.ParameterCelebID;
+			var page = $.mobile.activePage;
+			var pagename = $(page).data("title");
+			var pageNo = $(page).data("page_num");
+			var target = $(page).find(".celeb-detail-pics");
+			var url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&celeb_id=" + celebID;
+			url = encodeURI(url);
+			app.callAjax(url, target, pagename, true);
+		});
+
+		$(document).on('pageshow', '#celebDetailBio', function(event, ui) {
+			var celebID = sessionStorage.ParameterCelebID;
+			var page = $.mobile.activePage;
+			var pagename = $(page).data("title");
+			var target = $(page).find(".celeb-detail-bio");
+			var url = Config.servicePrefixUrl + $(page).data("rss") + celebID;
 			url = encodeURI(url);
 			app.callAjax(url, target, pagename, true);
 		});
@@ -65,7 +97,7 @@ var app = {
 
 	renderFeed : function(data, target, page, is_append) {
 		var entries = data.data;
-		if (is_append == "false") {
+		if (!is_append) {
 			$(target).html("");
 		}
 		if (page == "Tweets") {
@@ -224,22 +256,29 @@ var app = {
 		}
 	},
 
-	renderDetailCeleb : function(data, target) {
+	renderDetailCeleb : function(data, target, page, is_append) {
 		var celebID = sessionStorage.ParameterCelebID;
 		var celebItem = app.tweets[celebID];
 		var entries = data.celebTweet;
-		$(target).html("");
-		var	htmls = '<div data-role="navbar" class= "ui-bar tab">';
-			htmls += '<img class="ui-li-thumb" src="' + celebItem.profilePic + '"/>';
-			htmls += '<h3 class="ui-li-heading">' + celebItem.fullname + '</h3><br />';
-			htmls += '<h4 class="ui-li-heading">' + celebItem.username + '</h4>';
-			htmls += '</div>';
+		if (!is_append) {
+			$(target).html("");
+		}
+		var htmls = '<div data-role="navbar" class= "ui-bar tab">';
+		htmls += '<img class="ui-li-thumb" src="' + celebItem.profilePic + '"/>';
+		htmls += '<h3 class="ui-li-heading">' + celebItem.fullname + '</h3><br />';
+		htmls += '<h4 class="ui-li-heading">' + celebItem.username + '</h4>';
+		htmls += '</div>';
+
 		for (var i in entries) {
 			var item = entries[i];
-			console.log(item);
-			htmls = app.renderDetailCelebView(item);
-			$(target).append(htmls);
+			if (page == "CelebrityDetail") {
+				htmls += app.renderDetailCelebView(item);
+			} else if (page == "CelebrityDetailPic") {
+				htmls += app.renderDetailCelebPicsView(item);
+			}
 		}
+		$(target).append(htmls);
+
 		target.listview('refresh');
 	},
 
@@ -247,11 +286,48 @@ var app = {
 		var htmls = '<li>';
 		htmls += '<p class="time">' + item.timeago + '</p>';
 		htmls += '<p class="ui-li-desc">' + item.tweet + '</p>';
+		// if (item.image_url != "") {
+		// htmls += '<img class="ui-corner-none" src="' + item.image_url + '"/>';
+		// }
+		htmls += '</li>';
+		return htmls;
+	},
+
+	renderDetailCelebPicsView : function(item) {
+		var htmls = '<li>';
+		htmls += '<p class="time">' + item.timeago + '</p>';
+		htmls += '<p class="ui-li-desc">' + item.tweet + '</p>';
 		if (item.image_url != "") {
-			htmls += '<img class="ui-corner-none" src="' + item.image_url + '"/>';
+			htmls += '<img src="' + item.image_url + '"/>';
 		}
 		htmls += '</li>';
 		return htmls;
+	},
+
+	renderDetailCelebBio : function(data, target) {
+		var item = data[0];
+		console.log(item);
+		$(target).html("");
+		
+		var htmls = '<div data-role="navbar" class= "ui-bar tab">';
+		htmls += '<img class="ui-li-thumb" src="' + item.profilePic + '"/>';
+		htmls += '<h3 class="ui-li-heading">' + item.fullname + '</h3><br />';
+		htmls += '<h4 class="ui-li-heading">' + item.username + '</h4>';
+		htmls += '</div>';
+		htmls += '<p>' + item.bio + '</p>';
+		htmls += '<div class="ui-bar">';
+		htmls += '<ul>'
+		htmls += '<li><p>'+ item.tweets + '</p>';
+		htmls += '<p>Tweets</p></li>';
+		htmls += '<li><p>'+ item.followers + '</p>';
+		htmls += '<p>Followers</p></li>';
+		htmls += '<li><p>'+ item.following + '</p>';
+		htmls += '<p>Following</p></li>';
+		htmls += '</ul></div>'
+		
+		$(target).append(htmls);
+		
+		target.listview('refresh');
 	},
 
 	callAjax : function(url, target, page, is_append) {
@@ -264,8 +340,10 @@ var app = {
 			success : function(data) {
 				if (page == "DetailTrend") {
 					app.renderTrendFeed(data, target);
-				} else if (page == "CelebrityDetail") {
-					app.renderDetailCeleb(data, target);
+				} else if (page == "CelebrityDetail" || page == "CelebrityDetailPic") {
+					app.renderDetailCeleb(data, target, page, is_append);
+				} else if (page == "CelebrityDetailBio") {
+					app.renderDetailCelebBio(data, target);
 				} else {
 					app.renderFeed(data, target, page, is_append);
 				}
