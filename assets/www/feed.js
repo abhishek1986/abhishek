@@ -1,6 +1,7 @@
 var app = {
 
 	tweets : [],
+	page : {},
 
 	init : function() {
 		app.handelEvent();
@@ -8,17 +9,21 @@ var app = {
 
 	handelEvent : function() {
 		$(document).on('pageshow', '.mainTweet', function(e, data) {
+			if (!localStorage.Country) {
+				var country = " ";
+			} else {
+				var country = localStorage.Country;
+			}
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
 			var pageNo = $(page).data("page_num");
-			feed_url = Config.servicePrefixUrl + $(page).data("rss") + pageNo;
+			feed_url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&country=" + country;
 			var url = encodeURI(feed_url);
 			var target = $(page).find(".tweets");
 			app.callAjax(url, target, pagename, true);
 		});
 
-			$(document).on('keyup', '#celeb_name', function(e) {
-			console.log(e.target.value);
+		$(document).on('keyup', '#celeb_name', function(e) {
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
 			var pageNo = $(page).data("page_num");
@@ -29,13 +34,47 @@ var app = {
 		});
 
 		$(document).on('click', '.refresh', function(e, data) {
+			if (!localStorage.Country) {
+				var country = " ";
+			} else {
+				var country = localStorage.Country;
+			}
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
 			var pageNo = $(page).data("page_num");
-			feed_url = Config.servicePrefixUrl + $(page).data("rss") + pageNo;
+			feed_url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&country=" + country;
 			var url = encodeURI(feed_url);
 			var target = $(page).find(".tweets");
 			app.callAjax(url, target, pagename, false);
+			return;
+		});
+
+		$(document).on('click', '.submit', function(e, data) {
+			var country = $("input[type='radio'][name='radio-choice']:checked").val();
+			localStorage.Country = country;
+			var page = app.page;
+			var pagename = $(page).data("title");
+			var pageNo = $(page).data("page_num");
+			feed_url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&country=" + country;
+			var url = encodeURI(feed_url);
+			var target = $(page).find(".tweets");
+			app.callAjax(url, target, pagename, false);
+
+		});
+
+		$(document).on('click', '.popSettings', function(e, data) {
+			if (localStorage.Country == "IN"){
+				$("#India").attr('checked', true);
+			} else if (localStorage.Country == "US"){
+				$("#USA").attr('checked', true);
+			} else if (localStorage.Country == "CA"){
+				$("#Canada").attr('checked', true);
+			} else if (localStorage.Country == "AU"){
+				$("#Australia").attr('checked', true);
+			}
+			app.page = $.mobile.activePage;
+			$("#settings").popup("open");
+
 		});
 
 		$(document).on('pageshow', '#pageDetail', function(event, ui) {
@@ -119,6 +158,7 @@ var app = {
 		}
 
 		if (page == "Trends") {
+
 			var max = Number(entries[0].differential);
 			var min = Number(entries[entries.length - 1].differential);
 			var barVal = (max - min) / 10;
@@ -157,6 +197,7 @@ var app = {
 	},
 
 	renderPics : function(item) {
+		item.image = item.image.replace('${size}', '75x75');
 		var htmls = '<li>';
 		htmls += '<a href="#pageDetail" onclick="sessionStorage.ParameterID=\'' + item.id + '\'">';
 		htmls += '<img class="ui-li-thumb" src="' + item.celebProfilePic + '"/>';
@@ -185,28 +226,29 @@ var app = {
 		htmls += '<a href= "#celebDetail" onclick="sessionStorage.ParameterCelebID=\'' + item.id + '\' ">'
 		htmls += '<img class ="ui-li-thumb" src="' + item.profilePic + ' "/>';
 		htmls += '<h3 class="ui-li-heading">' + item.fullname + '</h3>';
-		htmls += '<p class="ui-li-desc">' + item.username + '</p>';
+		htmls += '<p class="ui-li-desc">@' + item.username + '</p>';
 		htmls += '</a></li>';
 		return htmls;
 	},
 
 	renderDetailFeed : function(item, target) {
-		var htmls = '<li>';
-		htmls += '<div data-role="navbar" class= "ui-bar tab">';
+		
+		var htmls = '<div data-role="header" class="ui-header ui-bar-a">';
 		htmls += '<img class="ui-li-thumb" src="' + item.celebProfilePic + '"/>';
-		htmls += '<h3 class="ui-li-heading">' + item.celebFullname + '</h3><br />';
-		htmls += '<h4 class="ui-li-heading">' + item.celebUsername + '</h4>';
-		htmls += '<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">';
+		htmls += '<h3 class="head ui-li-heading" data-theme="e">' + item.celebFullname + '</h3>';
+		htmls += '<h4 class="head ui-li-heading">@' + item.celebUsername + '</h4>';
+		htmls += '<div data-role="controlgroup" data-type="horizontal" class="urlgroup ui-btn-right">';
 		htmls += '<a href = "' + Config.REPLY_URL + item.id + '" data-role="button" data-mini="true"><img src="img/reply.png"/></a>';
 		htmls += '<a href = "' + Config.RETWEET_URL + item.id + '" data-role="button" data-mini="true"><img src="img/retweet.png"/></a>';
 		htmls += '<a href = "' + Config.FAV_URL + item.id + '" data-role="button" data-mini="true"><img src="img/favorite.png"/></a>';
 		htmls += '</div>';
 		htmls += '</div>';
-		htmls += '<p class="ui-li-desc">' + item.tweet + '</p>';
+		htmls += '<p>' + item.tweet + '</p>';
 		if (item.image != "") {
+			item.image = item.image.replace('${size}', '170x170');
 			htmls += '<img class="ui-corner-none" src="' + item.image + '"/>';
 		}
-		htmls += '</li>';
+	
 		return htmls;
 	},
 
@@ -263,10 +305,10 @@ var app = {
 		if (!is_append) {
 			$(target).html("");
 		}
-		var htmls = '<div data-role="navbar" class= "ui-bar tab">';
-		htmls += '<img class="ui-li-thumb" src="' + celebItem.profilePic + '"/>';
-		htmls += '<h3 class="ui-li-heading">' + celebItem.fullname + '</h3><br />';
-		htmls += '<h4 class="ui-li-heading">' + celebItem.username + '</h4>';
+		var htmls = '<div data-role="header" class="ui-header ui-bar-a">';
+		htmls += '<img class="ui-li-thumb" src="' + celebItem.profilePic + '" width="75" height="75" />';
+		htmls += '<h3 class="celeb ui-li-heading">' + celebItem.fullname + '</h3>';
+		htmls += '<h4 class="celeb ui-li-heading">@' + celebItem.username + '</h4>';
 		htmls += '</div>';
 
 		for (var i in entries) {
@@ -285,7 +327,7 @@ var app = {
 	renderDetailCelebView : function(item) {
 		var htmls = '<li>';
 		htmls += '<p class="time">' + item.timeago + '</p>';
-		htmls += '<p class="ui-li-desc">' + item.tweet + '</p>';
+		htmls += '<p>' + item.tweet + '</p>';
 		// if (item.image_url != "") {
 		// htmls += '<img class="ui-corner-none" src="' + item.image_url + '"/>';
 		// }
@@ -296,8 +338,9 @@ var app = {
 	renderDetailCelebPicsView : function(item) {
 		var htmls = '<li>';
 		htmls += '<p class="time">' + item.timeago + '</p>';
-		htmls += '<p class="ui-li-desc">' + item.tweet + '</p>';
+		htmls += '<p>' + item.tweet + '</p>';
 		if (item.image_url != "") {
+			item.image_url = item.image_url.replace('${size}', '75x75');
 			htmls += '<img src="' + item.image_url + '"/>';
 		}
 		htmls += '</li>';
@@ -306,27 +349,25 @@ var app = {
 
 	renderDetailCelebBio : function(data, target) {
 		var item = data[0];
-		console.log(item);
 		$(target).html("");
-		
-		var htmls = '<div data-role="navbar" class= "ui-bar tab">';
-		htmls += '<img class="ui-li-thumb" src="' + item.profilePic + '"/>';
-		htmls += '<h3 class="ui-li-heading">' + item.fullname + '</h3><br />';
-		htmls += '<h4 class="ui-li-heading">' + item.username + '</h4>';
+		var htmls = '<div data-role="header" class="ui-header ui-bar-a">';
+		htmls += '<img class="ui-li-thumb" src="' + item.profile_pic + '" width="75" height="75" />';
+		htmls += '<h3 class="celeb ui-li-heading">' + item.fullname + '</h3>';
+		htmls += '<h4 class="celeb ui-li-heading">@' + item.username + '</h4>';
 		htmls += '</div>';
-		htmls += '<p>' + item.bio + '</p>';
+		htmls += '<p class="bio">' + item.bio + '</p>';
 		htmls += '<div class="ui-bar">';
 		htmls += '<ul>'
-		htmls += '<li><p>'+ item.tweets + '</p>';
+		htmls += '<li><p>' + item.tweets + '</p>';
 		htmls += '<p>Tweets</p></li>';
-		htmls += '<li><p>'+ item.followers + '</p>';
+		htmls += '<li><p>' + item.followers + '</p>';
 		htmls += '<p>Followers</p></li>';
-		htmls += '<li><p>'+ item.following + '</p>';
+		htmls += '<li><p>' + item.following + '</p>';
 		htmls += '<p>Following</p></li>';
 		htmls += '</ul></div>'
-		
+
 		$(target).append(htmls);
-		
+
 		target.listview('refresh');
 	},
 

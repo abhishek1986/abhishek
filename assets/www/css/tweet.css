@@ -1,10 +1,3 @@
-/*.celeb-pic {
-	margin: 15px;
-}
-
-.celeb-photo{
-	margin: 5px;
-}*/
 .tweet-active {
 	background: green !important;
 }
@@ -12,19 +5,24 @@
 .time{
 	float: right;
 }
-
-/*.trendsContent{
-	margin: 10px;
-}
-
-span.text{
-	overflow : hidden;
-	width: 100%;
-	word-wrap: break-word;
-}*/
 .hidden{
 	display : none;
 }
 .loader{
 	text-align : center;
+}
+
+.image{
+	margin-left : 60px; 
+}
+
+h3.head,h4.head{
+	margin-left : 60px;
+}
+
+h3.celeb,h4.celeb{
+	margin-left : 100px;
+}
+.bio{
+	margin-top : 10px;
 }
