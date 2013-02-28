@@ -7,28 +7,19 @@
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.2.0.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/tweet.css" />
 		<title>Tweetwood</title>
-		<script type="text/javascript" src="cordova-2.2.0.js"></script>
+		<script type="text/javascript" src="js/cordova-2.2.0.js"></script>
 		<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 		<script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
 		<script type="text/javascript" src="js/config.js"></script>
-		<script type="text/javascript" src="feed.js"></script>
+		<script type="text/javascript" src="js/feed.js"></script>
 	</head>
 	<body>
 
 		<!-- This page is for the first tab i.e. Tweets. -->
 		<div data-role="page" id="pagetweets" class="mainTweet" data-title="Tweets" data-rss="getFeedNew?category=&page=" data-page_num="1">
 
-			<div data-role="header" data-position="fixed" >
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-					<a data-role="button" data-icon="arrow-l" data-rel="back" data-iconpos="notext"></a>
-				</div>
-				<a href="#pagehome" data-role="none"><img class="image" src="img/tweetwppd.png" /></a>
+			<div data-role="header" class="m-header"  data-position="fixed" >
 
-				<h1></h1>
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a class = "refresh" data-role="button" data-iconpos="notext" data-icon="refresh"></a>
-					<a href="#settings" class="popSettings" data-rel="popup" data-role="button" data-iconpos="notext" data-icon="gear"></a>
-				</div>
 			</div>
 
 			<div data-role="content">
@@ -42,23 +33,8 @@
 				</div>
 			</div>
 
-			<div data-role="footer" data-position="fixed">
-				<div data-role="navbar">
-					<ul>
-						<li>
-							<a href="#pagetweets" data-role="button" data-mini="true" class="tweet-active"><img src="img/buttonbar-tweets.png" /></a>
-						</li>
-						<li>
-							<a href="#pagepics" data-role="button" data-mini="true"><img src="img/buttonbar-photos.png" /></a>
-						</li>
-						<li>
-							<a href="#pagetrends" data-role="button" data-mini="true"><img src="img/buttonbar-trends.png" /></a>
-						</li>
-						<li>
-							<a href="#pagecelebs" data-role="button" data-mini="true"><img src="img/buttonbar-celebrities.png" /></a>
-						</li>
-					</ul>
-				</div>
+			<div data-role="footer" class="m-footer" data-highlight="pagetweets" data-position="fixed">
+
 			</div>
 		</div>
 
@@ -81,18 +57,7 @@
 		<!-- This page is for the second tab pictures. -->
 		<div data-role="page" id="pagepics" class="mainTweet" data-title="Pictures" data-prefetch data-rss="getFeedNew?category=&image=1&page=" data-page_num="1">
 
-			<div data-role="header" data-position="fixed" >
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-					<a data-role="button" data-icon="arrow-l" data-rel="back" data-iconpos="notext"></a>
-				</div>
-				<a href="#pagehome" data-role="none"><img class="image" src="img/tweetwppd.png" /></a>
-
-				<h1></h1>
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a class = "refresh" data-role="button" data-iconpos="notext" data-icon="refresh"></a>
-					<a href="#settings" class="popSettings" data-rel="popup" data-role="button" data-iconpos="notext" data-icon="gear"></a>
-				</div>
-			</div>
+			<div data-role="header" class="m-header" data-position="fixed" ></div>
 
 			<div data-role="content">
 				<div class="content-primary">
@@ -106,39 +71,14 @@
 				</div>
 			</div>
 
-			<div data-role="footer" data-position="fixed">
-				<div data-role="navbar">
-					<ul>
-						<li>
-							<a href="#pagetweets" data-role="button" data-mini="true"><img src="img/buttonbar-tweets.png" /></a>
-						</li>
-						<li>
-							<a href="#pagepics" data-role="button" data-theme="b" class="tweet-active" data-mini="true"><img src="img/buttonbar-photos.png" /></a>
-						</li>
-						<li>
-							<a href="#pagetrends" data-role="button" data-mini="true"><img src="img/buttonbar-trends.png" /></a>
-						</li>
-						<li>
-							<a href="#pagecelebs" data-role="button" data-mini="true"><img src="img/buttonbar-celebrities.png" /></a>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<div data-role="footer" class="m-footer" data-highlight="pagepics" data-position="fixed"></div>
 		</div>
+
 		<!-- This page is for the third tab trends. -->
 		<div data-role="page" id="pagetrends" class="mainTweet" data-title="Trends" data-rss="doSearchAppNew?q=&resultType=trend&page=" data-page_num="1">
 
-			<div data-role="header" data-position="fixed" >
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-					<a data-role="button" data-icon="arrow-l" data-rel="back" data-iconpos="notext"></a>
-				</div>
-				<a href="#pagehome" data-role="none"><img class="image" src="img/tweetwppd.png" /></a>
+			<div data-role="header" class="m-header" data-position="fixed" >
 
-				<h1></h1>
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a class = "refresh" data-role="button" data-iconpos="notext" data-icon="refresh"></a>
-					<a href="#settings" class="popSettings" data-rel="popup" data-role="button" data-iconpos="notext" data-icon="gear"></a>
-				</div>
 			</div>
 
 			<div data-role="content">
@@ -153,40 +93,16 @@
 				</div>
 			</div>
 
-			<div data-role="footer" data-position="fixed">
-				<div data-role="navbar">
-					<ul>
-						<li>
-							<a href="#pagetweets" data-role="button" data-mini="true"><img src="img/buttonbar-tweets.png" /></a>
-						</li>
-						<li>
-							<a href="#pagepics" data-role="button" data-mini="true"><img src="img/buttonbar-photos.png" /></a>
-						</li>
-						<li>
-							<a href="#pagetrends" data-role="button" class="tweet-active" data-mini="true"><img src="img/buttonbar-trends.png" /></a>
-						</li>
-						<li>
-							<a href="#pagecelebs" data-role="button" data-mini="true"><img src="img/buttonbar-celebrities.png" /></a>
-						</li>
-					</ul>
-				</div>
+			<div data-role="footer" class="m-footer" data-highlight="pagetrends" data-position="fixed">
+
 			</div>
 		</div>
 
 		<!-- This page is for the fourth tab celebrities. -->
 		<div data-role="page" id="pagecelebs" class="mainTweet" data-title="Celebrities" data-rss="doSearchAppNew?resultType=celebrity&page=" data-page_num="1">
 
-			<div data-role="header" data-position="fixed" >
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-					<a data-role="button" data-icon="arrow-l" data-rel="back" data-iconpos="notext"></a>
-				</div>
-				<a href="#pagehome" data-role="none"><img class="image" src="img/tweetwppd.png" /></a>
+			<div data-role="header" class="m-header" data-position="fixed" >
 
-				<h1></h1>
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a class = "refresh" data-role="button" data-iconpos="notext" data-icon="refresh"></a>
-					<a href="#settings" class="popSettings" data-rel="popup" data-role="button" data-iconpos="notext" data-icon="gear"></a>
-				</div>
 			</div>
 
 			<div data-role="content">
@@ -203,39 +119,16 @@
 				</div>
 			</div>
 
-			<div data-role="footer" data-position="fixed">
-				<div data-role="navbar">
-					<ul>
-						<li>
-							<a href="#pagetweets" data-role="button" data-mini="true"><img src="img/buttonbar-tweets.png" /></a>
-						</li>
-						<li>
-							<a href="#pagepics" data-role="button" data-mini="true"><img src="img/buttonbar-photos.png" /></a>
-						</li>
-						<li>
-							<a href="#pagetrends" data-role="button" data-mini="true"><img src="img/buttonbar-trends.png" /></a>
-						</li>
-						<li>
-							<a href="#pagecelebs" data-role="button" class="tweet-active" data-mini="true"><img src="img/buttonbar-celebrities.png" /></a>
-						</li>
-					</ul>
-				</div>
+			<div data-role="footer" class="m-footer" data-highlight="pagecelebs" data-position="fixed">
+
 			</div>
 		</div>
 
 		<!-- This the detail page for the tweets -->
 		<div data-role="page" id="pageDetail" data-title="DetailTweet">
 
-			<div data-role="header" data-position="fixed" >
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-					<a data-role="button" data-icon="arrow-l" data-rel="back" data-iconpos="notext"></a>
-				</div>
-				<a href="#pagehome" data-role="none"><img class="image" src="img/tweetwppd.png" /></a>
+			<div data-role="header" class="d-header" data-position="fixed" >
 
-				<h1></h1>
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a href="#settings" class="popSettings" data-rel="popup" data-role="button" data-iconpos="notext" data-icon="gear"></a>
-				</div>
 			</div>
 
 			<div data-role="content">
@@ -252,16 +145,8 @@
 
 		<div data-role="page" id="trendDetail" data-title="DetailTrend"  data-rss="doSearchAppNew?resultType=tweet&q=">
 
-			<div data-role="header" data-position="fixed" >
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-					<a data-role="button" data-icon="arrow-l" data-rel="back" data-iconpos="notext"></a>
-				</div>
-				<a href="#pagehome" data-role="none"><img class="image" src="img/tweetwppd.png" /></a>
+			<div data-role="header" class="d-header" data-position="fixed" >
 
-				<h1></h1>
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a href="#settings" class="popSettings" data-rel="popup" data-role="button" data-iconpos="notext" data-icon="gear"></a>
-				</div>
 			</div>
 
 			<div data-role="content">
@@ -273,16 +158,8 @@
 
 		<div data-role="page" id="celebDetail" data-title="CelebrityDetail" data-rss="getCelebTweetsNew?&page=" data-page_num="1">
 
-			<div data-role="header" data-position="fixed" >
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-					<a data-role="button" data-icon="arrow-l" data-rel="back" data-iconpos="notext"></a>
-				</div>
-				<a href="#pagehome" data-role="none"><img class="image" src="img/tweetwppd.png" /></a>
+			<div data-role="header" class="d-header" data-position="fixed" >
 
-				<h1></h1>
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a href="#settings" class="popSettings" data-rel="popup" data-role="button" data-iconpos="notext" data-icon="gear"></a>
-				</div>
 			</div>
 
 			<div data-role="content">
@@ -292,36 +169,16 @@
 				<input type="button" value="Load More" class="loadMore" data-mini="true" onclick="app.renderLoadMore()" />
 			</div>
 
-			<div data-role="footer" data-position="fixed">
-				<div data-role="navbar">
-					<ul>
-						<li>
-							<a href="#celebDetailBio" data-role="button" data-mini="true"><img src="img/celeb-bio.png" /></a>
-						</li>
-						<li>
-							<a href="#celebDetail" data-role="button" class="tweet-active" data-mini="true"><img src="img/celeb-tweets.png" /></a>
-						</li>
-						<li>
-							<a href="#celebDetailPic" data-role="button" data-mini="true"><img src="img/celeb-pics.png" /></a>
-						</li>
-					</ul>
-				</div>
+			<div data-role="footer" class="d-footer" data-highlight="celebDetail" data-position="fixed">
+
 			</div>
 
 		</div>
 
 		<div data-role="page" id="celebDetailPic" data-title="CelebrityDetailPic" data-rss="getCelebTweetsNew?&image=1&page=" data-page_num="1">
 
-			<div data-role="header" data-position="fixed" >
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-					<a data-role="button" data-icon="arrow-l" data-rel="back" data-iconpos="notext"></a>
-				</div>
-				<a href="#pagehome" data-role="none"><img class="image" src="img/tweetwppd.png" /></a>
+			<div data-role="header" class="d-header" data-position="fixed" >
 
-				<h1></h1>
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a href="#settings" class="popSettings" data-rel="popup" data-role="button" data-iconpos="notext" data-icon="gear"></a>
-				</div>
 			</div>
 
 			<div data-role="content">
@@ -331,35 +188,15 @@
 				<input type="button" value="Load More" class="loadMore" data-mini="true" onclick="app.renderLoadMore()" />
 			</div>
 
-			<div data-role="footer" data-position="fixed">
-				<div data-role="navbar">
-					<ul>
-						<li>
-							<a href="#celebDetailBio" data-role="button" data-mini="true"><img src="img/celeb-bio.png" /></a>
-						</li>
-						<li>
-							<a href="#celebDetail" data-role="button" data-mini="true"><img src="img/celeb-tweets.png" /></a>
-						</li>
-						<li>
-							<a href="#celebDetailPic" data-role="button" class="tweet-active" data-mini="true"><img src="img/celeb-pics.png" /></a>
-						</li>
-					</ul>
-				</div>
+			<div data-role="footer" class="d-footer" data-highlight="celebDetailPic" data-position="fixed">
+
 			</div>
 		</div>
 
 		<div data-role="page" id="celebDetailBio" data-title="CelebrityDetailBio" data-rss="getCelebBioNew?&celeb_id=">
 
-			<div data-role="header" data-position="fixed" >
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-					<a data-role="button" data-icon="arrow-l" data-rel="back" data-iconpos="notext"></a>
-				</div>
-				<a href="#pagehome" data-role="none"><img class="image" src="img/tweetwppd.png" /></a>
+			<div data-role="header" class="d-header" data-position="fixed" >
 
-				<h1></h1>
-				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-right">
-					<a href="#settings" class="popSettings" data-rel="popup" data-role="button" data-iconpos="notext" data-icon="gear"></a>
-				</div>
 			</div>
 
 			<div data-role="content">
@@ -368,48 +205,9 @@
 				</ul>
 			</div>
 
-			<div data-role="footer" data-position="fixed">
-				<div data-role="navbar">
-					<ul>
-						<li>
-							<a href="#celebDetailBio" data-role="button" class="tweet-active" data-mini="true"><img src="img/celeb-bio.png" /></a>
-						</li>
-						<li>
-							<a href="#celebDetail" data-role="button" data-mini="true"><img src="img/celeb-tweets.png" /></a>
-						</li>
-						<li>
-							<a href="#celebDetailPic" data-role="button" data-mini="true"><img src="img/celeb-pics.png" /></a>
-						</li>
-					</ul>
-				</div>
+			<div data-role="footer" class="d-footer" data-highlight="celebDetailBio" data-position="fixed">
+
 			</div>
-		</div>
-
-		<div data-role="popup" id="settings" data-title="Feed Settings">
-			<div data-role="header">
-				<h1>Feed Settings</h1>
-				<a href="#" data-rel="back" class="submit ui-btn-right" data-role="button">Done</a>
-			</div>
-			<fieldset data-role="controlgroup">
-				<legend>
-					Choose a Country For Feed:
-				</legend>
-				<input type="radio" name="radio-choice" id="Any" value=" " checked="checked"  />
-				<label for="Any">Any</label>
-
-				<input type="radio" name="radio-choice" id="India" value="IN"  />
-				<label for="India">INDIA</label>
-
-				<input type="radio" name="radio-choice" id="USA" value="US"  />
-				<label for="USA">USA</label>
-
-				<input type="radio" name="radio-choice" id="Canada" value="CA"  />
-				<label for="Canada">CANADA</label>
-
-				<input type="radio" name="radio-choice" id="Australia" value="AU"  />
-				<label for="Australia">Australia</label>
-			</fieldset>
-
 		</div>
 	</body>
 </html>

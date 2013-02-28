@@ -2,27 +2,30 @@
 	background: green !important;
 }
 
-.time{
+.time {
 	float: right;
 }
-.hidden{
-	display : none;
+.hidden {
+	display: none;
 }
-.loader{
-	text-align : center;
-}
-
-.image{
-	margin-left : 60px; 
+.loader {
+	text-align: center;
 }
 
-h3.head,h4.head{
-	margin-left : 60px;
+.image {
+	margin-left: 60px;
 }
 
-h3.celeb,h4.celeb{
-	margin-left : 100px;
+h3.head, h4.head {
+	margin-left: 60px;
 }
-.bio{
-	margin-top : 10px;
+
+h3.celeb, h4.celeb {
+	margin-left: 100px;
+}
+.bio {
+	margin-top: 10px;
+}
+.loader {
+	margin-top: 30px;
 }

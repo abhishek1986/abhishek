@@ -8,6 +8,27 @@ var app = {
 	},
 
 	handelEvent : function() {
+		$(document).on('pageinit', function(event, data) {
+			var $currentPage = $(event.target);
+			$(this).find(".m-header").load('html/header.html', function() {
+				$(this).trigger("create")
+			});
+			$currentPage.find(".m-footer").load('html/footer.html', function() {
+				$(this).trigger("create");
+				var tab = $(this).data("highlight");
+				$currentPage.find("a[href='#" + tab + "']").addClass('tweet-active');
+			});
+			$(this).find(".d-header").load('html/header2.html', function() {
+				$(this).trigger("create")
+			});
+			$currentPage.find(".d-footer").load('html/footer2.html', function() {
+				$(this).trigger("create")
+				var tab = $(this).data("highlight");
+				$currentPage.find("a[href='#" + tab + "']").addClass('tweet-active');
+			});
+
+		});
+
 		$(document).on('pageshow', '.mainTweet', function(e, data) {
 			if (!localStorage.Country) {
 				var country = " ";
@@ -63,13 +84,17 @@ var app = {
 		});
 
 		$(document).on('click', '.popSettings', function(e, data) {
-			if (localStorage.Country == "IN"){
+			$(this).find(".m-settings").load('html/setting.html', function() {
+				$(this).trigger("create")
+			});
+
+			if (localStorage.Country == "IN") {
 				$("#India").attr('checked', true);
-			} else if (localStorage.Country == "US"){
+			} else if (localStorage.Country == "US") {
 				$("#USA").attr('checked', true);
-			} else if (localStorage.Country == "CA"){
+			} else if (localStorage.Country == "CA") {
 				$("#Canada").attr('checked', true);
-			} else if (localStorage.Country == "AU"){
+			} else if (localStorage.Country == "AU") {
 				$("#Australia").attr('checked', true);
 			}
 			app.page = $.mobile.activePage;
@@ -86,7 +111,7 @@ var app = {
 			$(target).html("");
 			var htmls = app.renderDetailFeed(item, target);
 			$(target).append(htmls);
-			target.listview('refresh');
+			//target.listview('refresh');
 		});
 
 		$(document).on('pageshow', '#trendDetail', function(event, ui) {
@@ -101,6 +126,13 @@ var app = {
 		});
 
 		$(document).on('pageshow', '#celebDetail', function(event, ui) {
+			// console.log($(this).find('a').attr('href'));
+			// $('.d-footer ul li').each(function(e) {
+			// $(this).find('a').removeClass('tweet-active');
+			// if(location.href.indexOf($(this).find('a').attr('href')) > -1) {
+			// $(this).find('a').addClass('tweet-active');
+			// }
+			// });
 			var celebID = sessionStorage.ParameterCelebID;
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
@@ -232,7 +264,7 @@ var app = {
 	},
 
 	renderDetailFeed : function(item, target) {
-		
+
 		var htmls = '<div data-role="header" class="ui-header ui-bar-a">';
 		htmls += '<img class="ui-li-thumb" src="' + item.celebProfilePic + '"/>';
 		htmls += '<h3 class="head ui-li-heading" data-theme="e">' + item.celebFullname + '</h3>';
@@ -248,7 +280,7 @@ var app = {
 			item.image = item.image.replace('${size}', '170x170');
 			htmls += '<img class="ui-corner-none" src="' + item.image + '"/>';
 		}
-	
+
 		return htmls;
 	},
 
