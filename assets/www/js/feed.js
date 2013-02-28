@@ -11,7 +11,7 @@ var app = {
 		$(document).on('pageinit', function(event, data) {
 			var $currentPage = $(event.target);
 			$(this).find(".m-header").load('html/header.html', function() {
-				$(this).trigger("create")
+				$(this).trigger("create");
 			});
 			$currentPage.find(".m-footer").load('html/footer.html', function() {
 				$(this).trigger("create");
@@ -19,12 +19,28 @@ var app = {
 				$currentPage.find("a[href='#" + tab + "']").addClass('tweet-active');
 			});
 			$(this).find(".d-header").load('html/header2.html', function() {
-				$(this).trigger("create")
+				$(this).trigger("create");
 			});
 			$currentPage.find(".d-footer").load('html/footer2.html', function() {
-				$(this).trigger("create")
+				$(this).trigger("create");
 				var tab = $(this).data("highlight");
 				$currentPage.find("a[href='#" + tab + "']").addClass('tweet-active');
+			});
+
+			$(this).find(".m-settings").load('html/setting.html', function() {
+
+				if (localStorage.Country == "IN") {
+					$(this).find("input#India").attr('checked', "checked");
+				} else if (localStorage.Country == "US") {
+					$(this).find("input#USA").attr('checked', true);
+				} else if (localStorage.Country == "CA") {
+					$(this).find("input#Canada").attr('checked', true);
+				} else if (localStorage.Country == "AU") {
+					$(this).find("input#Australia").attr('checked', true);
+				} else {
+					$(this).find("input#Any").attr('checked', true);
+				}
+				$(this).trigger("create");
 			});
 
 		});
@@ -84,22 +100,9 @@ var app = {
 		});
 
 		$(document).on('click', '.popSettings', function(e, data) {
-			$(this).find(".m-settings").load('html/setting.html', function() {
-				$(this).trigger("create")
-			});
-
-			if (localStorage.Country == "IN") {
-				$("#India").attr('checked', true);
-			} else if (localStorage.Country == "US") {
-				$("#USA").attr('checked', true);
-			} else if (localStorage.Country == "CA") {
-				$("#Canada").attr('checked', true);
-			} else if (localStorage.Country == "AU") {
-				$("#Australia").attr('checked', true);
-			}
 			app.page = $.mobile.activePage;
-			$("#settings").popup("open");
-
+			// //$("#settings").popup("open");
+			//
 		});
 
 		$(document).on('pageshow', '#pageDetail', function(event, ui) {
