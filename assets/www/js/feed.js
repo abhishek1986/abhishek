@@ -54,20 +54,24 @@ var app = {
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
 			var pageNo = $(page).data("page_num");
+			var append = $(page).data("append");
+			console.log(append);
 			feed_url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&country=" + country;
 			var url = encodeURI(feed_url);
 			var target = $(page).find(".tweets");
-			app.callAjax(url, target, pagename, true);
+			app.append = false;
+			app.callAjax(url, target, pagename, append);
 		});
 
 		$(document).on('keyup', '#celeb_name', function(e) {
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
 			var pageNo = $(page).data("page_num");
+			var append = $(page).data("append");
 			feed_url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&q=" + e.target.value;
 			var url = encodeURI(feed_url);
 			var target = $(page).find(".tweets");
-			app.callAjax(url, target, pagename, false);
+			app.callAjax(url, target, pagename, append);
 		});
 
 		$(document).on('click', '.refresh', function(e, data) {
@@ -79,10 +83,11 @@ var app = {
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
 			var pageNo = $(page).data("page_num");
+			var append = $(page).data("append");
 			feed_url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&country=" + country;
 			var url = encodeURI(feed_url);
 			var target = $(page).find(".tweets");
-			app.callAjax(url, target, pagename, false);
+			app.callAjax(url, target, pagename, append);
 			return;
 		});
 
@@ -92,10 +97,11 @@ var app = {
 			var page = app.page;
 			var pagename = $(page).data("title");
 			var pageNo = $(page).data("page_num");
+			var append = $(page).data("append");
 			feed_url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&country=" + country;
 			var url = encodeURI(feed_url);
 			var target = $(page).find(".tweets");
-			app.callAjax(url, target, pagename, false);
+			app.callAjax(url, target, pagename, append);
 
 		});
 
@@ -122,28 +128,24 @@ var app = {
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
 			var target = $(page).find(".trendsDetail");
+			var append = $(page).data("append");
 			var url = Config.servicePrefixUrl + $(page).data("rss") + trend;
 			url = encodeURI(url);
-			app.callAjax(url, target, pagename, true);
+			app.callAjax(url, target, pagename, append);
 
 		});
 
 		$(document).on('pageshow', '#celebDetail', function(event, ui) {
-			// console.log($(this).find('a').attr('href'));
-			// $('.d-footer ul li').each(function(e) {
-			// $(this).find('a').removeClass('tweet-active');
-			// if(location.href.indexOf($(this).find('a').attr('href')) > -1) {
-			// $(this).find('a').addClass('tweet-active');
-			// }
-			// });
+
 			var celebID = sessionStorage.ParameterCelebID;
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
 			var pageNo = $(page).data("page_num");
 			var target = $(page).find(".celeb-detail");
+			var append = $(page).data("append");
 			var url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&celeb_id=" + celebID;
 			url = encodeURI(url);
-			app.callAjax(url, target, pagename, true);
+			app.callAjax(url, target, pagename, append);
 		});
 
 		$(document).on('pageshow', '#celebDetailPic', function(event, ui) {
@@ -152,9 +154,10 @@ var app = {
 			var pagename = $(page).data("title");
 			var pageNo = $(page).data("page_num");
 			var target = $(page).find(".celeb-detail-pics");
+			var append = $(page).data("append");
 			var url = Config.servicePrefixUrl + $(page).data("rss") + pageNo + "&celeb_id=" + celebID;
 			url = encodeURI(url);
-			app.callAjax(url, target, pagename, true);
+			app.callAjax(url, target, pagename, append);
 		});
 
 		$(document).on('pageshow', '#celebDetailBio', function(event, ui) {
@@ -162,16 +165,17 @@ var app = {
 			var page = $.mobile.activePage;
 			var pagename = $(page).data("title");
 			var target = $(page).find(".celeb-detail-bio");
+			var append = $(page).data("append");
 			var url = Config.servicePrefixUrl + $(page).data("rss") + celebID;
 			url = encodeURI(url);
-			app.callAjax(url, target, pagename, true);
+			app.callAjax(url, target, pagename, append);
 		});
 
 	},
 
 	renderFeed : function(data, target, page, is_append) {
 		var entries = data.data;
-		if (!is_append) {
+		if (is_append == false) {
 			$(target).html("");
 		}
 		if (page == "Tweets") {
@@ -223,7 +227,7 @@ var app = {
 	renderTweet : function(item) {
 		var htmls = '<li>';
 		htmls += '<a href="#pageDetail" onclick="sessionStorage.ParameterID=\'' + item.id + '\'">';
-		htmls += '<img class="ui-li-thumb" src="' + item.celebProfilePic + '"/>';
+		htmls += '<img class="profilePic ui-li-thumb" src="' + item.celebProfilePic + '"/>';
 		htmls += '<p class="time">' + item.timeago + '</p>';
 		htmls += '<h3 class="ui-li-heading">' + item.celebFullname + '</h3>';
 		htmls += '<p class="ui-li-desc">' + item.tweet + '</p>';
@@ -235,7 +239,7 @@ var app = {
 		item.image = item.image.replace('${size}', '75x75');
 		var htmls = '<li>';
 		htmls += '<a href="#pageDetail" onclick="sessionStorage.ParameterID=\'' + item.id + '\'">';
-		htmls += '<img class="ui-li-thumb" src="' + item.celebProfilePic + '"/>';
+		htmls += '<img class="profilePic ui-li-thumb" src="' + item.celebProfilePic + '"/>';
 		htmls += '<p class="time">' + item.timeago + '</p>';
 		htmls += '<h3 class="ui-li-heading">' + item.celebFullname + '</h3>';
 		htmls += '<p class="ui-li-desc">' + item.tweet + '</p>';
@@ -259,7 +263,7 @@ var app = {
 	renderCeleb : function(item) {
 		var htmls = '<li>';
 		htmls += '<a href= "#celebDetail" onclick="sessionStorage.ParameterCelebID=\'' + item.id + '\' ">'
-		htmls += '<img class ="ui-li-thumb" src="' + item.profilePic + ' "/>';
+		htmls += '<img class ="profilePic ui-li-thumb" src="' + item.profilePic + ' "/>';
 		htmls += '<h3 class="ui-li-heading">' + item.fullname + '</h3>';
 		htmls += '<p class="ui-li-desc">@' + item.username + '</p>';
 		htmls += '</a></li>';
@@ -278,7 +282,7 @@ var app = {
 		htmls += '<a href = "' + Config.FAV_URL + item.id + '" data-role="button" data-mini="true"><img src="img/favorite.png"/></a>';
 		htmls += '</div>';
 		htmls += '</div>';
-		htmls += '<p>' + item.tweet + '</p>';
+		htmls += '<p class="tweet">' + item.tweet + '</p>';
 		if (item.image != "") {
 			item.image = item.image.replace('${size}', '170x170');
 			htmls += '<img class="ui-corner-none" src="' + item.image + '"/>';
@@ -302,7 +306,7 @@ var app = {
 	renderTrendFeedView : function(item) {
 		var htmls = '<li>';
 		htmls += '<a href="#pageDetail" onclick="sessionStorage.ParameterID=\'' + item.id + '\'">';
-		htmls += '<img class="ui-li-thumb ui-corner-none" src="' + item.celebProfilePic + '"/>';
+		htmls += '<img class="profilePic ui-li-thumb ui-corner-none" src="' + item.celebProfilePic + '"/>';
 		htmls += '<p class="time">' + item.timeago + '</p>';
 		htmls += '<h3 class="ui-li-heading">' + item.celebFullname + '</h3>';
 		htmls += '<p class="ui-li-desc">' + item.tweet + '</p>';
@@ -313,9 +317,13 @@ var app = {
 	renderLoadMore : function() {
 		var page = $.mobile.activePage;
 		var pagename = $(page).data("title");
+		console.log(pagename);
 		var pageNo = $(page).data("page_num");
 		pageNo = pageNo + 1;
 		$(page).data("page_num", pageNo);
+		var append = $(page).data("append");
+		append = "true";
+		$(page).data("append", append);
 		if (pagename == "Tweets") {
 			$('#pagetweets').trigger('pageshow');
 		}
@@ -331,21 +339,27 @@ var app = {
 		if (pagename == "CelebrityDetail") {
 			$('#celebDetail').trigger('pageshow');
 		}
+		if (pagename == "CelebrityDetailPic") {
+			$('#celebDetailPic').trigger('pageshow');
+		}
 	},
 
 	renderDetailCeleb : function(data, target, page, is_append) {
 		var celebID = sessionStorage.ParameterCelebID;
 		var celebItem = app.tweets[celebID];
 		var entries = data.celebTweet;
-		if (!is_append) {
+		if (is_append == false) {
 			$(target).html("");
-		}
-		var htmls = '<div data-role="header" class="ui-header ui-bar-a">';
-		htmls += '<img class="ui-li-thumb" src="' + celebItem.profilePic + '" width="75" height="75" />';
-		htmls += '<h3 class="celeb ui-li-heading">' + celebItem.fullname + '</h3>';
-		htmls += '<h4 class="celeb ui-li-heading">@' + celebItem.username + '</h4>';
-		htmls += '</div>';
 
+			var htmls = '<div data-role="header" class="ui-header ui-bar-a">';
+			htmls += '<img class="ui-li-thumb" src="' + celebItem.profilePic + '" width="75" height="75" />';
+			htmls += '<h3 class="celeb ui-li-heading">' + celebItem.fullname + '</h3>';
+			htmls += '<h4 class="celeb ui-li-heading">@' + celebItem.username + '</h4>';
+			htmls += '</div>';
+		}
+		else{
+			var htmls = "";
+		}
 		for (var i in entries) {
 			var item = entries[i];
 			if (page == "CelebrityDetail") {
@@ -354,6 +368,7 @@ var app = {
 				htmls += app.renderDetailCelebPicsView(item);
 			}
 		}
+		
 		$(target).append(htmls);
 
 		target.listview('refresh');
@@ -362,7 +377,7 @@ var app = {
 	renderDetailCelebView : function(item) {
 		var htmls = '<li>';
 		htmls += '<p class="time">' + item.timeago + '</p>';
-		htmls += '<p>' + item.tweet + '</p>';
+		htmls += '<p class="tweet">' + item.tweet + '</p>';
 		// if (item.image_url != "") {
 		// htmls += '<img class="ui-corner-none" src="' + item.image_url + '"/>';
 		// }
@@ -373,10 +388,10 @@ var app = {
 	renderDetailCelebPicsView : function(item) {
 		var htmls = '<li>';
 		htmls += '<p class="time">' + item.timeago + '</p>';
-		htmls += '<p>' + item.tweet + '</p>';
+		htmls += '<p class="tweet">' + item.tweet + '</p>';
 		if (item.image_url != "") {
 			item.image_url = item.image_url.replace('${size}', '75x75');
-			htmls += '<img src="' + item.image_url + '"/>';
+			htmls += '<img class="profilePic" src="' + item.image_url + '"/>';
 		}
 		htmls += '</li>';
 		return htmls;
@@ -386,20 +401,19 @@ var app = {
 		var item = data[0];
 		$(target).html("");
 		var htmls = '<div data-role="header" class="ui-header ui-bar-a">';
-		htmls += '<img class="ui-li-thumb" src="' + item.profile_pic + '" width="75" height="75" />';
-		htmls += '<h3 class="celeb ui-li-heading">' + item.fullname + '</h3>';
-		htmls += '<h4 class="celeb ui-li-heading">@' + item.username + '</h4>';
+		htmls += '<img class="detailPic ui-li-thumb" src="' + item.profile_pic + '" width="75" height="75" />';
+		htmls += '<h3 class="celeb >' + item.fullname + '</h3>';
+		htmls += '<h4 class="celeb ">@' + item.username + '</h4>';
 		htmls += '</div>';
 		htmls += '<p class="bio">' + item.bio + '</p>';
 		htmls += '<div class="ui-bar">';
-		htmls += '<ul>'
-		htmls += '<li><p>' + item.tweets + '</p>';
-		htmls += '<p>Tweets</p></li>';
-		htmls += '<li><p>' + item.followers + '</p>';
-		htmls += '<p>Followers</p></li>';
-		htmls += '<li><p>' + item.following + '</p>';
-		htmls += '<p>Following</p></li>';
-		htmls += '</ul></div>'
+		htmls += '<span><p class="tweet">' + item.tweets + '</p>';
+		htmls += '<p class="tweet">Tweets</p></span>';
+		htmls += '<span class="followers"><p class="tweet">' + item.followers + '</p>';
+		htmls += '<p class="tweet">Followers</p></span>';
+		htmls += '<span class="following"><p class="tweet">' + item.following + '</p>';
+		htmls += '<p class="tweet">Following</p></span>';
+		htmls += '</div>'
 
 		$(target).append(htmls);
 
@@ -407,6 +421,7 @@ var app = {
 	},
 
 	callAjax : function(url, target, page, is_append) {
+		console.log(is_append);
 		$(".loader").show();
 		$(".loadMore").parent("div").hide();
 		$.ajax({

@@ -30,6 +30,33 @@ h3.celeb, h4.celeb {
 	margin-top: 30px;
 }
 .submit {
-
-
+	float: right;
+}
+.profilePic {
+	width: 75px;
+	height: 80px;
+	margin-top: 1px;
+}
+.detailPic {
+	height: 70px;
+}
+.followers {
+	margin-left: 200px;
+	margin-top: -50px;
+}
+.following {
+	margin-left: 400px;
+	margin-top: -50px;
+	
+}
+.bio {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400; 
+	font-size: 15px;
+	margin-left: 50px;
+}
+.tweet{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400; 
+	font-size: 15px;
 }

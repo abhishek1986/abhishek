@@ -6,6 +6,7 @@
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.2.0.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/tweet.css" />
+		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<title>Tweetwood</title>
 		<script type="text/javascript" src="js/cordova-2.2.0.js"></script>
 		<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
@@ -16,7 +17,7 @@
 	<body>
 
 		<!-- This page is for the first tab i.e. Tweets. -->
-		<div data-role="page" id="pagetweets" class="mainTweet" data-title="Tweets" data-rss="getFeedNew?category=&page=" data-page_num="1">
+		<div data-role="page" id="pagetweets" class="mainTweet" data-title="Tweets" data-rss="getFeedNew?category=&page=" data-page_num="1" data-append="false">
 
 			<div data-role="header" class="m-header"  data-position="fixed" >
 
@@ -55,7 +56,7 @@
 		</div>
 
 		<!-- This page is for the second tab pictures. -->
-		<div data-role="page" id="pagepics" class="mainTweet" data-title="Pictures" data-prefetch data-rss="getFeedNew?category=&image=1&page=" data-page_num="1">
+		<div data-role="page" id="pagepics" class="mainTweet" data-title="Pictures" data-prefetch data-rss="getFeedNew?category=&image=1&page=" data-page_num="1" data-append="false">
 
 			<div data-role="header" class="m-header" data-position="fixed" ></div>
 
@@ -75,7 +76,7 @@
 		</div>
 
 		<!-- This page is for the third tab trends. -->
-		<div data-role="page" id="pagetrends" class="mainTweet" data-title="Trends" data-rss="doSearchAppNew?q=&resultType=trend&page=" data-page_num="1">
+		<div data-role="page" id="pagetrends" class="mainTweet" data-title="Trends" data-rss="doSearchAppNew?q=&resultType=trend&page=" data-page_num="1" data-append="false">
 
 			<div data-role="header" class="m-header" data-position="fixed" >
 
@@ -99,7 +100,7 @@
 		</div>
 
 		<!-- This page is for the fourth tab celebrities. -->
-		<div data-role="page" id="pagecelebs" class="mainTweet" data-title="Celebrities" data-rss="doSearchAppNew?resultType=celebrity&page=" data-page_num="1">
+		<div data-role="page" id="pagecelebs" class="mainTweet" data-title="Celebrities" data-rss="doSearchAppNew?resultType=celebrity&page=" data-page_num="1" data-append="false">
 
 			<div data-role="header" class="m-header" data-position="fixed" >
 
@@ -156,7 +157,7 @@
 			</div>
 		</div>
 
-		<div data-role="page" id="celebDetail" data-title="CelebrityDetail" data-rss="getCelebTweetsNew?&page=" data-page_num="1">
+		<div data-role="page" id="celebDetail" data-title="CelebrityDetail" data-rss="getCelebTweetsNew?&page=" data-page_num="1"  data-append="false">
 
 			<div data-role="header" class="d-header" data-position="fixed" >
 
@@ -175,7 +176,7 @@
 
 		</div>
 
-		<div data-role="page" id="celebDetailPic" data-title="CelebrityDetailPic" data-rss="getCelebTweetsNew?&image=1&page=" data-page_num="1">
+		<div data-role="page" id="celebDetailPic" data-title="CelebrityDetailPic" data-rss="getCelebTweetsNew?&image=1&page=" data-page_num="1" data-append="false">
 
 			<div data-role="header" class="d-header" data-position="fixed" >
 
